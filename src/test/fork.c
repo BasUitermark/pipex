@@ -12,10 +12,16 @@
  * 
 */
 
-int main(int argc, char const *argv[])
+int	main(int argc, char const **argv, char **envp)
 {
-	fork();
-	fork();
-	printf("Hello\n");
-	return 0;
+	pid_t	parent;
+
+	parent = fork();
+	if (parent < 0)
+		return (0);
+	if (parent == 0)
+		printf("This is the child process\n");
+	else if (parent > 0)
+		printf("This is the parent process\n");
+	return (0);
 }

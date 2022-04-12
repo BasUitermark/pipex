@@ -50,7 +50,7 @@ endif
 
 #===============================================================================: Executable run command
 test: all
-	@./$(NAME) text_files/input_1.txt "bla" "bla" text_files/output_1.txt
+	@./$(NAME) text_files/input_1.txt bla bla text_files/output_1.txt
 
 #===============================================================================: Build messages
 message:

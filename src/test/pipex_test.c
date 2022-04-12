@@ -6,7 +6,7 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/06 13:18:50 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/07 08:43:34 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/04/12 11:26:16 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	pipex(int fd1, int fd2)
 	if (parent < 0)
 		return (perror("Fork: "));
 	if (parent == 0)
-		child_process(fd1, cmd1);
+		printf("Child\n");
+		// child_process(fd1, cmd1);
 	else
-		parent_process(fd2, cmd2);
+		printf("Parent\n");
+		// parent_process(fd2, cmd2);
 }

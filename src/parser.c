@@ -6,45 +6,39 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 11:40:35 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/07 16:06:52 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/04/12 16:48:17 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static char	*search_path(char **envp)
+static char	**search_path(char **envp, t_var vars)
 {
-	size_t	i;
+	char	**temp;
 
-	i = 0;
+	vars.i = 0;
 	while (true)
 	{
-		if (ft_strnstr(envp[i], "PATH", ft_strlen(envp[i])))
+		if (ft_strnstr(envp[vars.i], "PATH=", ft_strlen(envp[vars.i])))
 			break ;
-		i++;
+		vars.i++;
 	}
-	return (ft_substr(envp[i], 5, ft_strlen(envp[i])));
+	vars.temp_path = ft_substr(envp[vars.i], 5, ft_strlen(envp[vars.i]));
+	return (ft_split(vars.temp_path, ':'));
 }
 
-static char	**search_commands(int argc, char const **argv)
+t_var	input_parser(char **envp)
 {
-	size_t	i;
-	char	**cmnds;
+	t_var	vars;
 
-	i = 0;
-	cmnds = (char **)ft_calloc(argc - 2, sizeof(char *));
-	if (!cmnds)
-		return (NULL);
-	
-}
-
-t_cmnd	input_parser(int argc, char const **argv, char **envp)
-{
-	t_cmnd	cmnds;
-
-	cmnds.path = search_path(envp);
-	cmnds.cmnds = search_commands(argc, argv)
-	if (!cmnds.path || !cmnds.cmnds)
-		
-	return (cmnds);
+	vars.i = 0;
+	vars.path = search_path(envp, vars);
+	if (!vars.path)
+		error("Failed parsing!");
+	while (vars.path[vars.i])
+	{
+		vars.path[vars.i] = ft_strappend(vars.path[vars.i], "/");
+		vars.i++;
+	}
+	return (vars);
 }

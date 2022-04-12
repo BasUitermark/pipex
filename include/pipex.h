@@ -6,7 +6,7 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/06 12:51:02 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/07 14:29:10 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/04/12 16:50:02 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,24 @@
 
 //== Structs ==//
 
-typedef struct	s_cmnd
+typedef struct s_var
 {
-	char	**cmnds;
-	char	*path;
-}	t_cmnd;
-
+	char	*cmnd;
+	char	*temp_path;
+	char	**path;
+	int		file_1;
+	int		file_2;
+	int		i;
+	int		end[2];
+	pid_t	parent_process;
+	pid_t	child_process;
+}	t_var;
 
 //== Functions ==//
 
 int		main(int argc, const char **argv, char **envp);
 void	error(char *error_msg);
-t_cmnd	input_parser(int argc, char const **argv, char **envp);
+t_var	input_parser(char **envp);
+void	pipex(t_var vars, int argc, char *argv);
 
 #endif
