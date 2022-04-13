@@ -6,39 +6,41 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 11:40:35 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/12 16:48:17 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/04/13 08:40:54 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-static char	**search_path(char **envp, t_var vars)
+static char	**search_path(char **envp)
 {
-	char	**temp;
+	char	*temp_path;
+	int		i;
 
-	vars.i = 0;
+	i = 0;
 	while (true)
 	{
-		if (ft_strnstr(envp[vars.i], "PATH=", ft_strlen(envp[vars.i])))
+		if (ft_strnstr(envp[i], "PATH=", ft_strlen(envp[i])))
 			break ;
-		vars.i++;
+		i++;
 	}
-	vars.temp_path = ft_substr(envp[vars.i], 5, ft_strlen(envp[vars.i]));
-	return (ft_split(vars.temp_path, ':'));
+	temp_path = ft_substr(envp[i], 5, ft_strlen(envp[i]));
+	return (ft_split(temp_path, ':'));
 }
 
-t_var	input_parser(char **envp)
+char	**input_parser(char **envp)
 {
-	t_var	vars;
+	char	**path;
+	int		i;
 
-	vars.i = 0;
-	vars.path = search_path(envp, vars);
-	if (!vars.path)
+	i = 0;
+	path = search_path(envp);
+	if (!path)
 		error("Failed parsing!");
-	while (vars.path[vars.i])
+	while (path[i])
 	{
-		vars.path[vars.i] = ft_strappend(vars.path[vars.i], "/");
-		vars.i++;
+		path[i] = ft_strappend(path[i], "/");
+		i++;
 	}
-	return (vars);
+	return (path);
 }

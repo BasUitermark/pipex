@@ -28,6 +28,7 @@ HEADERS		= -I $(LIBFT) -I $(PIPEX)
 
 #===============================================================================: Sourcefiles
 SRCS		= $(addprefix src/, $(addsuffix .c, \
+			pipex \
 			error \
 			parser \
 			main))
