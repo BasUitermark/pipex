@@ -6,7 +6,7 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 11:40:35 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/13 08:40:54 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/04/14 09:32:48 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**input_parser(char **envp)
 	i = 0;
 	path = search_path(envp);
 	if (!path)
-		error("Failed parsing!");
+		error("Failed parsing!", STDERR_FILENO);
 	while (path[i])
 	{
 		path[i] = ft_strappend(path[i], "/");
