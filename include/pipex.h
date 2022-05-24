@@ -6,7 +6,7 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/06 12:51:02 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/14 11:53:15 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/05/24 12:06:10 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <stdio.h>
 
 //== Structs ==//
 

@@ -6,7 +6,7 @@
 /*   By: buiterma <buiterma@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 11:40:35 by buiterma      #+#    #+#                 */
-/*   Updated: 2022/04/14 09:32:48 by buiterma      ########   odam.nl         */
+/*   Updated: 2022/05/24 14:02:29 by buiterma      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	**search_path(char **envp)
 	i = 0;
 	while (true)
 	{
-		if (ft_strnstr(envp[i], "PATH=", ft_strlen(envp[i])))
+		if (ft_strnstr(envp[i], "PATH=", 5))
 			break ;
 		i++;
 	}
