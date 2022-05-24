@@ -12,21 +12,39 @@
 
 #include "../include/pipex.h"
 
+static void	ft_free_array(char **array)
+{
+	size_t	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free (array);
+}
+
 static void	child_process(t_var vars, const char *argv, char **envp)
 {
-	char	**cmnds;
+	char	**cmds;
+	char	*tmp_path;
 	int		i;
 
 	i = 0;
-	cmnds = ft_split(argv, ' ');
-	if (access(cmnds[0], X_OK) == 0)
-		execve(cmnds[0], cmnds, envp);
+	cmds = ft_split(argv, ' ');
+	if (access(cmds[0], X_OK) == 0)
+		execve(cmds[0], cmds, envp);
 	while (vars.path[i])
 	{
-		if (access(ft_strjoin(vars.path[i], cmnds[0]), X_OK) == 0)
-			execve(ft_strjoin(vars.path[i], cmnds[0]), cmnds, envp);
+		tmp_path = ft_strjoin(vars.path[i], cmds[0]);
+		if (access(tmp_path, X_OK) == 0)
+			execve(ft_strjoin(vars.path[i], cmds[0]), cmds, envp);
+		free(tmp_path);
 		i++;
 	}
+	ft_free_array(cmds);
+	ft_free_array(vars.path);
 	error("Command not found!", 127);
 }
 

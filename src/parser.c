@@ -14,7 +14,8 @@
 
 static char	**search_path(char **envp)
 {
-	char	*temp_path;
+	char	*tmp_path;
+	char	**path;
 	int		i;
 
 	i = 0;
@@ -24,8 +25,10 @@ static char	**search_path(char **envp)
 			break ;
 		i++;
 	}
-	temp_path = ft_substr(envp[i], 5, ft_strlen(envp[i]));
-	return (ft_split(temp_path, ':'));
+	tmp_path = ft_substr(envp[i], 5, ft_strlen(envp[i]));
+	path = ft_split(tmp_path, ':');
+	free(tmp_path);
+	return (path);
 }
 
 char	**input_parser(char **envp)
