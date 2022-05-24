@@ -19,9 +19,9 @@ void	error(char *error_msg, int error_num)
 		ft_putendl_fd(error_msg, STDERR_FILENO);
 		exit (127);
 	}
-	if (errno)
-		perror(RED "ERROR" RESET);
-	else
-		ft_putendl_fd(error_msg, STDERR_FILENO);
+	// if (errno)
+	// 	perror(RED "ERROR" RESET);
+	// else
+	// 	ft_putendl_fd(error_msg, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

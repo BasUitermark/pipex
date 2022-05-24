@@ -19,6 +19,8 @@ static void	child_process(t_var vars, const char *argv, char **envp)
 
 	i = 0;
 	cmnds = ft_split(argv, ' ');
+	if (access(cmnds[0], X_OK) == 0)
+		execve(cmnds[0], cmnds, envp);
 	while (vars.path[i])
 	{
 		if (access(ft_strjoin(vars.path[i], cmnds[0]), X_OK) == 0)
